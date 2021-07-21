@@ -1,1 +1,6 @@
-GET http://localhost:5000
+### Local Development
+GET http://localhost:5000/ HTTP/1.1
+
+### Production
+GET https://node-react-fullstack-course.herokuapp.com HTTP/1.1
+
