@@ -6,6 +6,15 @@ module.exports = (app) => {
       scope: ['profile', 'email'],
     }));
 
+  app.get(
+    '/auth/facebook',
+    passport.authenticate('facebook', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+    }),
+  );
+
+  app.get('/auth/facebook/callback', passport.authenticate('facebook'));
   app.get('/auth/google/callback', passport.authenticate('google'));
 
   app.get('/api/currentUser', (req, res) => {
