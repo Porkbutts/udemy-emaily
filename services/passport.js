@@ -1,5 +1,7 @@
+/* eslint-disable consistent-return */
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
@@ -27,6 +29,24 @@ passport.use(
         return done(null, user);
       }
       const newUser = await new User({ googleID: profile.id }).save();
+      done(null, newUser);
+    },
+  ),
+);
+
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: keys.facebookClientID,
+      clientSecret: keys.facebookClientSecret,
+      callbackURL: '/auth/facebook/callback',
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      const user = await User.findOne({ facebookID: profile.id });
+      if (user) {
+        return done(null, user);
+      }
+      const newUser = await new User({ facebookID: profile.id }).save();
       done(null, newUser);
     },
   ),

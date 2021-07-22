@@ -18,6 +18,8 @@ Create a file called `.env` with the following variables defined:
 ```bash
 GOOG_OAUTH_CLIENT_ID=<google oauth client id>
 GOOG_OAUTH_CLIENT_SECRET=<google oauth client secret>
+MONGO_URI=<mongo uri>
+COOKIE_KEY=<cookie key> 
 ```
 
 Then start the application in development mode:
