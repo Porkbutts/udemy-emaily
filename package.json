@@ -8,7 +8,7 @@
     "npm": "7.15.1"
   },
   "scripts": {
-    "start": "node -r dotenv/config index.js",
+    "start": "node index.js",
     "server": "nodemon -r dotenv/config index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
