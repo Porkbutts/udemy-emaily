@@ -33,7 +33,11 @@ passport.use(
       if (user) {
         return done(null, user);
       }
-      const newUser = await new User({ googleID: profile.id }).save();
+      const newUser = await new User({ 
+        googleID: profile.id,
+        displayName: profile.displayName,
+        imageUrl: profile.photos[0].value,
+      }).save();
       done(null, newUser);
     },
   ),
