@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Payments from "./Payments";
-import Avatar, { ConfigProvider } from 'react-avatar';
+import Avatar from 'react-avatar';
 
 
 class Header extends Component {
