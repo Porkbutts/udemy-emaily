@@ -1,4 +1,4 @@
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_SURVEYS } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await fetch('/api/currentUser');
@@ -12,8 +12,8 @@ export const handleToken = token => async dispatch => {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(token) 
   });
-  const body = await res.json();
-  dispatch({ type: FETCH_USER, payload: body });
+  const payload = await res.json();
+  dispatch({ type: FETCH_USER, payload });
 }
 
 export const submitSurvey = ({ title, subject, body, emails }, history) => async dispatch => {
@@ -27,7 +27,13 @@ export const submitSurvey = ({ title, subject, body, emails }, history) => async
       recipients: emails,
     })
   });
-  const jsonBody = await res.json();
+  const payload = await res.json();
   history.push('/surveys');
-  dispatch({ type: FETCH_USER, payload: jsonBody });
+  dispatch({ type: FETCH_USER, payload });
+};
+
+export const fetchSurveys = () => async dispatch => {
+  const res = await fetch('/api/surveys');
+  const payload = await res.json();
+  dispatch({ type: FETCH_SURVEYS, payload });
 };
